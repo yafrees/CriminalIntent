@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 
 import java.util.UUID;
 
+@Deprecated
+
 public class CrimeActivity extends /*FragmentActivity*/ SingleFragmentActivity {
 
     private static final String EXTRA_CRIME_ID = "com.yf.criminalintent.crime_id";

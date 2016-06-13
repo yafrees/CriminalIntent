@@ -2,6 +2,7 @@ package com.yf.criminalintent;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ public class CrimeFragment extends Fragment{
     private CheckBox mSolvedCheckBox;
 
     private static final String ARG_CRIME_ID = "crime_id";
+    private static final String DIALOG_DATE = "DialogDate";
 
     public static CrimeFragment  newInstance(UUID crimeId){
         Bundle args = new Bundle();
@@ -75,7 +77,16 @@ public class CrimeFragment extends Fragment{
         //设置Button上的文字显示
         mDataButton = (Button) v.findViewById(R.id.crima_date);
         mDataButton.setText(mCrime.getDate().toString());
-        mDataButton.setEnabled(false);
+//        mDataButton.setEnabled(false);
+        //点击按钮弹出对话框
+        mDataButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getFragmentManager();
+                DatePickerFragment dialog = new DatePickerFragment();
+                dialog.show(manager , DIALOG_DATE);
+            }
+        });
 
         //监听CheckBox的状态变化
         mSolvedCheckBox = (CheckBox) v.findViewById(R.id.crime_solved);
