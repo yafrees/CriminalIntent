@@ -16,12 +16,13 @@ public class CrimeLab {
 
     private CrimeLab(Context context){
         mCrimes = new ArrayList<>();
-        for (int i = 0 ; i < 100 ; i++){
-            Crime crime = new Crime();
-            crime.setTitle("Crime # " + i);
-            crime.setSolved(i % 2 == 0);
-            mCrimes.add(crime);
-        }
+        //可以点击菜单栏添加crime记录
+//        for (int i = 0 ; i < 100 ; i++){
+//            Crime crime = new Crime();
+//            crime.setTitle("Crime # " + i);
+//            crime.setSolved(i % 2 == 0);
+//            mCrimes.add(crime);
+//        }
     }
 
     public List<Crime> getCrimes(){
@@ -42,5 +43,10 @@ public class CrimeLab {
             sCrimeLab = new CrimeLab(context);
         }
         return sCrimeLab;
+    }
+
+    //手动添加crime记录
+    public void addCrime(Crime c){
+        mCrimes.add(c);
     }
 }
