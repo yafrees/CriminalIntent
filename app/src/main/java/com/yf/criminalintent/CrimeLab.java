@@ -15,7 +15,7 @@ import java.util.UUID;
 public class CrimeLab {
     private static CrimeLab sCrimeLab;
 
-    private List<Crime> mCrimes;
+//    private List<Crime> mCrimes;
 
     private Context mContext;
     private SQLiteDatabase mDatabase;
@@ -24,7 +24,7 @@ public class CrimeLab {
         mContext = context.getApplicationContext();
         mDatabase = new CrimeBaseHelper(mContext).getWritableDatabase();
 
-        mCrimes = new ArrayList<>();
+//        mCrimes = new ArrayList<>();
         //可以点击菜单栏添加crime记录
 //        for (int i = 0 ; i < 100 ; i++){
 //            Crime crime = new Crime();
@@ -32,18 +32,20 @@ public class CrimeLab {
 //            crime.setSolved(i % 2 == 0);
 //            mCrimes.add(crime);
 //        }
+
     }
 
     public List<Crime> getCrimes(){
-        return mCrimes;
+//        return mCrimes;
+        return new ArrayList<>();
     }
 
     public Crime getCrime(UUID id){
-        for (Crime crime : mCrimes){
-            if (crime.getId().equals(id)){
-                return crime;
-            }
-        }
+//        for (Crime crime : mCrimes){
+//            if (crime.getId().equals(id)){
+//                return crime;
+//            }
+//        }
         return null;
     }
 
@@ -56,6 +58,6 @@ public class CrimeLab {
 
     //手动添加crime记录
     public void addCrime(Crime c){
-        mCrimes.add(c);
+//        mCrimes.add(c);
     }
 }
