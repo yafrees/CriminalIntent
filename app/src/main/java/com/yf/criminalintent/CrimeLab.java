@@ -42,14 +42,7 @@ public class CrimeLab {
         return new ArrayList<>();
     }
 
-    public Crime getCrime(UUID id){
-//        for (Crime crime : mCrimes){
-//            if (crime.getId().equals(id)){
-//                return crime;
-//            }
-//        }
-        return null;
-    }
+
 
     //使用ContentValues，写入数据库
     private static ContentValues getContentValues(Crime crime){
@@ -72,5 +65,28 @@ public class CrimeLab {
     //手动添加crime记录
     public void addCrime(Crime c){
 //        mCrimes.add(c);
+
+        ContentValues values = getContentValues(c);
+        mDatabase.insert(CrimeDbSchema.CrimeTable.NAME , null , values);
+    }
+
+    public Crime getCrime(UUID id){
+//        for (Crime crime : mCrimes){
+//            if (crime.getId().equals(id)){
+//                return crime;
+//            }
+//        }
+        return null;
+    }
+
+    //更新记录
+    public void updateCrime(Crime crime){
+        String uuidString = crime.getId().toString();
+        ContentValues values = getContentValues(crime);
+
+        mDatabase.update(CrimeDbSchema.CrimeTable.NAME ,
+                values ,
+                CrimeDbSchema.CrimeTable.Cols.UUID + " = ? " ,
+                new String[]{uuidString});
     }
 }
