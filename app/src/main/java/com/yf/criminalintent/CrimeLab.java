@@ -1,6 +1,9 @@
 package com.yf.criminalintent;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.yf.criminalintent.database.CrimeBaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +15,16 @@ import java.util.UUID;
 public class CrimeLab {
     private static CrimeLab sCrimeLab;
 
-    private ArrayList<Crime> mCrimes;
+    private List<Crime> mCrimes;
+
+    private Context mContext;
+    private SQLiteDatabase mDatabase;
 
     private CrimeLab(Context context){
+
+        mContext = context.getApplicationContext();
+        mDatabase = new CrimeBaseHelper(mContext).getWritableDatabase();
+
         mCrimes = new ArrayList<>();
         //可以点击菜单栏添加crime记录
 //        for (int i = 0 ; i < 100 ; i++){
