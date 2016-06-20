@@ -21,7 +21,6 @@ public class CrimeLab {
     private SQLiteDatabase mDatabase;
 
     private CrimeLab(Context context){
-
         mContext = context.getApplicationContext();
         mDatabase = new CrimeBaseHelper(mContext).getWritableDatabase();
 
