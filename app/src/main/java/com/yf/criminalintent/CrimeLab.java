@@ -68,6 +68,8 @@ public class CrimeLab {
         values.put(CrimeDbSchema.CrimeTable.Cols.DATE , crime.getDate().getTime());
         values.put(CrimeDbSchema.CrimeTable.Cols.SOLVED , crime.isSolved());
 
+        values.put(CrimeDbSchema.CrimeTable.Cols.SUSPECT , crime.getSuspect());
+
         return values;
     }
 

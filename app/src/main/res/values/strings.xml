@@ -15,6 +15,12 @@
     <string name="subtitle_format">%1$s crimes</string>
 
 
+    <string name="crime_suspect_text">CHOOSE SUSPECT</string>
+    <string name="crime_report_text">SEND CRIME REPORT</string>
+
+
+
+
 
 
 </resources>
