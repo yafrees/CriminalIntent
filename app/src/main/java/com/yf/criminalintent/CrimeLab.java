@@ -2,9 +2,11 @@ package com.yf.criminalintent;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.yf.criminalintent.database.CrimeBaseHelper;
+import com.yf.criminalintent.database.CrimeCursorWrapper;
 import com.yf.criminalintent.database.CrimeDbSchema;
 
 import java.util.ArrayList;
@@ -39,7 +41,21 @@ public class CrimeLab {
 
     public List<Crime> getCrimes(){
 //        return mCrimes;
-        return new ArrayList<>();
+//        return new ArrayList<>();
+        List<Crime> crimes = new ArrayList<>();
+
+        CrimeCursorWrapper cursor = queryCrimes(null , null);
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()){
+                crimes.add(cursor.getCrime());
+                cursor.moveToNext();
+            }
+        }finally {
+            cursor.close();
+        }
+        return crimes;
     }
 
 
@@ -53,6 +69,22 @@ public class CrimeLab {
         values.put(CrimeDbSchema.CrimeTable.Cols.SOLVED , crime.isSolved());
 
         return values;
+    }
+
+    //查询Crime记录
+//    private Cursor queryCrimes(String whereClause , String [] whereArgs){
+    private CrimeCursorWrapper queryCrimes(String whereClause , String [] whereArgs ){
+        Cursor cursor = mDatabase.query(
+                CrimeDbSchema.CrimeTable.NAME,
+                null,
+                whereClause,
+                whereArgs,
+                null,
+                null,
+                null
+        );
+//        return cursor;
+        return new CrimeCursorWrapper(cursor);
     }
 
     public static CrimeLab get(Context context){
@@ -76,7 +108,22 @@ public class CrimeLab {
 //                return crime;
 //            }
 //        }
-        return null;
+//        return null;
+
+        CrimeCursorWrapper cursor = queryCrimes(CrimeDbSchema.CrimeTable.Cols.UUID + " = ?",
+                new String[]{id.toString()});
+
+        try {
+            if (cursor.getCount() == 0){
+                return null;
+            }
+            cursor.moveToFirst();
+            return cursor.getCrime();
+        }
+        finally {
+            cursor.close();
+        }
+
     }
 
     //更新记录

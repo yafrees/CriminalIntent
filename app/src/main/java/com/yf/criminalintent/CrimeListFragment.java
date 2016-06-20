@@ -127,6 +127,7 @@ public class CrimeListFragment extends Fragment {
         mCrimeRecyclerView.setAdapter(mAdapter);
         }
         else {
+            mAdapter.setCrimes(crimes);
             mAdapter.notifyDataSetChanged();
         }
         //刷新子标题的状态
@@ -204,6 +205,8 @@ public class CrimeListFragment extends Fragment {
         public int getItemCount() {
             return mCrimes.size();
         }
+
+        public void setCrimes(List<Crime> crimes){mCrimes = crimes;}
     }
 
 
