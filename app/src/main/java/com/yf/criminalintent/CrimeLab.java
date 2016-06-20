@@ -1,9 +1,11 @@
 package com.yf.criminalintent;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.yf.criminalintent.database.CrimeBaseHelper;
+import com.yf.criminalintent.database.CrimeDbSchema;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,17 @@ public class CrimeLab {
 //            }
 //        }
         return null;
+    }
+
+    //使用ContentValues，写入数据库
+    private static ContentValues getContentValues(Crime crime){
+        ContentValues values = new ContentValues();
+        values.put(CrimeDbSchema.CrimeTable.Cols.UUID , crime.getId().toString());
+        values.put(CrimeDbSchema.CrimeTable.Cols.TITLE , crime.getTitle());
+        values.put(CrimeDbSchema.CrimeTable.Cols.DATE , crime.getDate().getTime());
+        values.put(CrimeDbSchema.CrimeTable.Cols.SOLVED , crime.isSolved());
+
+        return values;
     }
 
     public static CrimeLab get(Context context){
