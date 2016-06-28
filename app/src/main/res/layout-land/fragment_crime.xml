@@ -7,6 +7,9 @@
     <!-- 水平布局-->
     <!-- 定义在水平或者垂直布局文件里的同一组件必须具有同样的ID属性，这样才能引用到它-->
 
+
+    <include layout="@layout/view_camera_and_title" />
+
     <TextView
         style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
