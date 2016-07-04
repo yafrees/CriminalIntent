@@ -14,7 +14,8 @@ public class CrimeListActivity extends SingleFragmentActivity {
 //    //使用双面板布局
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_twopane;
+//        return R.layout.activity_twopane;
+        return R.layout.activity_maserdetail;
     }
 
 
