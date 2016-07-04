@@ -10,4 +10,12 @@ public class CrimeListActivity extends SingleFragmentActivity {
     protected Fragment createFragment() {
         return new CrimeListFragment();
     }
+
+//    //使用双面板布局
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.activity_twopane;
+    }
+
+
 }
